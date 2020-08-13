@@ -10,10 +10,22 @@ services:
     environment:
       POSTGRES_PASSWORD: "postgres"
     ports:
-         - 5432:5432/tcp
+         - 3333:5432/tcp
     volumes:
     - db-data:/var/lib/postgresql/data
 
+    networks:
+      - postgres-compose-network
+  
+  pgadmin-compose:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "email@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "postgres"
+    ports:
+      - "16543:80"
+    depends_on:
+      - db
     networks:
       - postgres-compose-network
 
