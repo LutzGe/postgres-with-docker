@@ -1,0 +1,26 @@
+#lutz
+version: "3"
+services: 
+  db:
+    restart: always
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: postgres_docker
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+    ports:
+         - 5432:5432/tcp
+    volumes:
+    - db-data:/var/lib/postgresql/data
+
+    networks:
+      - postgres-compose-network
+
+networks: 
+  postgres-compose-network:
+    driver: bridge
+
+volumes:
+  db-data:
+    driver: local
