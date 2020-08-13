@@ -17,19 +17,6 @@ services:
     networks:
       - postgres-compose-network
 
-  pgadmin:
-    image: dpage/pgadmin4
-    environment:
-      # PGADMIN_DEFAULT_SERVER: "postgres"
-      PGADMIN_DEFAULT_EMAIL: "hotsjoao@gmail.com"
-      PGADMIN_DEFAULT_PASSWORD: "postgres"
-    ports:
-      - "16543:80"
-    depends_on:
-      - db
-    networks:
-      - postgres-compose-network
-   
 networks: 
   postgres-compose-network:
     driver: bridge
